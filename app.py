@@ -4,12 +4,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-# Disable the problematic numpy import
+# Set page layout
 st.set_page_config(layout="wide")
 st.title("💡 REAL TIME LOAN ELIGIBILITY ASSESSMENT")
 st.write("Using Machine Learning and XAI Techniques")
 
-# Don't try to load model files - use intelligent logic instead
+# Information notice
 st.info("📊 Using advanced loan assessment algorithm")
 
 # Sidebar inputs
@@ -40,7 +40,10 @@ input_data = {
     'Total Income': f"${total_income}",
     'Loan Term': f"{loan_amount_term} months"
 }
-st.dataframe(pd.DataFrame([input_data]), hide_index=True)
+
+# FIXED LINE: Removed hide_index=True to prevent version incompatibility errors on Render
+df_display = pd.DataFrame([input_data])
+st.table(df_display)
 
 # Prediction function
 def calculate_loan_score(credit_history, loan_amount, total_income, education, 
